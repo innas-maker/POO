@@ -7,7 +7,6 @@ import model.*;
 import service.*;
 import javax.swing.JOptionPane;
 
-
 public class AccueilFrame extends JFrame {
 
     private JTextField plaqueField;
@@ -41,19 +40,9 @@ public class AccueilFrame extends JFrame {
         JLabel logo = new JLabel(" AUTOCHECK");
         logo.setFont(new Font("Oswald", Font.BOLD, 18));
 
-        JPanel menu = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
-        menu.setOpaque(false);
-        menu.add(new JLabel("Accueil"));
-        menu.add(new JLabel("Historique"));
-        menu.add(new JLabel("Paramètres"));
-        menu.add(new JLabel("Aide"));
-
-        RoundedButton compte = new RoundedButton("Mon Compte");
-        compte.setBackground(new Color(20, 20, 20));
+        
 
         nav.add(logo, BorderLayout.WEST);
-        nav.add(menu, BorderLayout.CENTER);
-        nav.add(compte, BorderLayout.EAST);
 
         return nav;
     }
@@ -89,8 +78,8 @@ public class AccueilFrame extends JFrame {
         title.setFont(new Font("Oswald", Font.BOLD, 26));
 
         JLabel desc = new JLabel(
-                "<html>Plateforme de gestion pour inspections techniques certifiées.<br>" +
-                "Assurez la conformité et la sécurité en quelques clics.</html>"
+                "<html>Plateforme de gestion pour inspections techniques certifiées.<br>"
+                + "Assurez la conformité et la sécurité en quelques clics.</html>"
         );
 
         JLabel status = new JLabel("● Système Opérationnel");
@@ -154,7 +143,7 @@ public class AccueilFrame extends JFrame {
     }
 
     // ================= ACTIONS =================
-   private JPanel createActions() {
+    private JPanel createActions() {
     JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 0));
     actions.setOpaque(false);
 
@@ -163,33 +152,28 @@ public class AccueilFrame extends JFrame {
     nouvelle.setForeground(Color.WHITE);
     nouvelle.setPreferredSize(new Dimension(220, 45));
 
-    // ✅ ACTION LISTENER (ÉTAPE 7)
+   
     nouvelle.addActionListener(e -> {
         try {
-            // 1️⃣ Lire les champs
             String plaque = plaqueField.getText();
             String type = (String) typeBox.getSelectedItem();
             String modele = modeleField.getText();
             int annee = Integer.parseInt(anneeField.getText());
 
-            // 2️⃣ Créer le véhicule
             Vehicule vehicule = new Vehicule();
             vehicule.setPlaque(plaque);
             vehicule.setType(type);
             vehicule.setModele(modele);
             vehicule.setAnnee(annee);
 
-            // 3️⃣ Créer le contrôle technique
             ControleTechnique controle = new ControleTechnique();
             controle.setVehicule(vehicule);
 
-            // 4️⃣ Test visuel
-            JOptionPane.showMessageDialog(
-                this,
-                "Inspection créée pour : " + plaque,
-                "Succès",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+            
+            new InspectionFrame().setVisible(true);
+
+           
+            this.dispose();
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(
@@ -219,8 +203,7 @@ public class AccueilFrame extends JFrame {
         GlassPanel footer = new GlassPanel(25);
         footer.setLayout(new FlowLayout(FlowLayout.RIGHT, 30, 10));
 
-        footer.add(new JLabel("Dernière entrée : AUDI A3 – 14:30"));
-        footer.add(new JLabel("Inspections jour : 24 / 40"));
+       
 
         return footer;
     }
@@ -234,8 +217,8 @@ public class AccueilFrame extends JFrame {
     // =================================================
     // ================= CLASSES INTERNES ==============
     // =================================================
-
     private static class BackgroundPanel extends JPanel {
+
         private final Image bg;
 
         public BackgroundPanel(Image bg) {
@@ -244,12 +227,14 @@ public class AccueilFrame extends JFrame {
 
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (bg != null)
+            if (bg != null) {
                 g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+            }
         }
     }
 
     private static class GlassPanel extends JPanel {
+
         private final int radius;
 
         public GlassPanel(int radius) {
@@ -270,6 +255,7 @@ public class AccueilFrame extends JFrame {
     }
 
     private static class RoundedTextField extends JTextField {
+
         public RoundedTextField() {
             setOpaque(false);
             setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
@@ -285,6 +271,7 @@ public class AccueilFrame extends JFrame {
     }
 
     private static class RoundedButton extends JButton {
+
         public RoundedButton(String text) {
             super(text);
             setOpaque(false);
@@ -302,6 +289,5 @@ public class AccueilFrame extends JFrame {
             super.paintComponent(g);
         }
     };
-
 
 }

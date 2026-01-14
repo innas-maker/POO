@@ -34,3 +34,23 @@ public class ParametreControle {
         return defauts;
     }
 }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public CategorieControle getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(CategorieControle categorie) {
+        this.categorie = categorie;
+    }
+    
+    
+}
+
