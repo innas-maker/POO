@@ -5,17 +5,31 @@ import java.awt.*;
 
 public class InspectionFrame extends JFrame {
 
+    public CardLayout cardLayout;
+    public JPanel container;
+
     public InspectionFrame() {
         setTitle("AutoCheck – Inspection en cours");
         setSize(1200, 750);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+         cardLayout = new CardLayout();
+       container = new JPanel(cardLayout);
 
-        setLayout(new BorderLayout());
+        JPanel accueil = new JPanel(new BorderLayout());
 
-        add(createHeader(), BorderLayout.NORTH);
-        add(createCenter(), BorderLayout.CENTER);
-        add(createSidebar(), BorderLayout.EAST);
+        accueil.add(createHeader(), BorderLayout.NORTH);
+        accueil.add(createCenter(), BorderLayout.CENTER);
+
+        container.add(accueil, "Accueil");
+
+        container.add(new DocumentsPage(this), "Documents");
+        container.add(new MoteurPage(this), "Moteur");
+        container.add(new EclairagePage(this), "Eclairage");
+        container.add(new FreinagePage(this), "Freinage");
+setContentPane(container);
+cardLayout.show(container, "Accueil");
+
     }
 
     // ================= HEADER =================
@@ -28,7 +42,7 @@ public class InspectionFrame extends JFrame {
         title.setFont(new Font("SansSerif", Font.BOLD, 26));
 
         JLabel subtitle = new JLabel(
-            "Sélectionnez une catégorie pour accéder aux points de contrôle."
+                "Sélectionnez une catégorie pour accéder aux points de contrôle."
         );
         subtitle.setForeground(Color.DARK_GRAY);
 
@@ -50,10 +64,10 @@ public class InspectionFrame extends JFrame {
         center.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
         center.setBackground(Color.WHITE);
 
-        center.add(createCard("Documents Administratifs", "Carte grise, Plaques, VIN"));
-        center.add(createCard("Moteur", "Niveaux, Fuites, Échappement"));
-        center.add(createCard("Éclairage", "Feux, Signalisation"));
-        center.add(createCard("Freinage", "Disques, Plaquettes, Liquide"));
+        center.add(createCard("Documents Administratifs", "Plaques d'immatriculation, Certificat d'immatriculation, Assurance"));
+        center.add(createCard("Moteur", "Fuites moteur, Support moteur, Courrois/Poulies"));
+        center.add(createCard("Éclairage", "Feux de route, Clignotant, Feux stop"));
+        center.add(createCard("Freinage", "Plaquettes, Disques, Liquide de frein"));
 
         return center;
     }
@@ -76,52 +90,21 @@ public class InspectionFrame extends JFrame {
         card.add(t, BorderLayout.NORTH);
         card.add(d, BorderLayout.CENTER);
 
-        card.addActionListener(e ->
-            JOptionPane.showMessageDialog(this,
-                "Ouverture : " + title)
-        );
+        card.addActionListener(e -> {
+    switch (title) {
+        case "Documents Administratifs" -> afficherPage("Documents");
+        case "Moteur" -> afficherPage("Moteur");
+        case "Éclairage" -> afficherPage("Eclairage");
+        case "Freinage" -> afficherPage("Freinage");
+    }
+});
+
 
         return card;
     }
 
-    // ================= SIDEBAR =================
-    private JPanel createSidebar() {
-        JPanel side = new JPanel();
-        side.setPreferredSize(new Dimension(300, 0));
-        side.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
-        side.setLayout(new BoxLayout(side, BoxLayout.Y_AXIS));
-        side.setBackground(new Color(245, 245, 245));
-
-        JLabel title = new JLabel("Synthèse de l’inspection");
-        title.setFont(new Font("SansSerif", Font.BOLD, 16));
-
-        side.add(title);
-        side.add(Box.createVerticalStrut(20));
-
-        side.add(createStatus("Documents"));
-        side.add(createStatus("Moteur"));
-        side.add(createStatus("Éclairage"));
-        side.add(createStatus("Freinage"));
-
-        side.add(Box.createVerticalGlue());
-
-        JButton finish = new JButton("Finaliser l’inspection");
-        finish.setBackground(new Color(20, 20, 20));
-        finish.setForeground(Color.WHITE);
-
-        side.add(finish);
-
-        return side;
+    public void afficherPage(String page) {
+        cardLayout.show(container, page);
     }
 
-    private JPanel createStatus(String name) {
-        JPanel row = new JPanel(new BorderLayout());
-        row.setOpaque(false);
-        row.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-
-        row.add(new JLabel(name), BorderLayout.WEST);
-        row.add(new JLabel("À faire"), BorderLayout.EAST);
-
-        return row;
-    }
 }

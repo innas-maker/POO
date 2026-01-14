@@ -26,5 +26,15 @@ public class ElementControle {
     public NiveauDefaillance getNiveau() {
         return niveau;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }
 
