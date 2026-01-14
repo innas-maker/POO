@@ -3,6 +3,10 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import model.*;
+import service.*;
+import javax.swing.JOptionPane;
+
 
 public class AccueilFrame extends JFrame {
 
@@ -17,7 +21,7 @@ public class AccueilFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        Image bg = loadImage("/images/desert.png");
+        Image bg = loadImage("/images/desert.jpg");
         BackgroundPanel root = new BackgroundPanel(bg);
         setContentPane(root);
 
@@ -150,23 +154,65 @@ public class AccueilFrame extends JFrame {
     }
 
     // ================= ACTIONS =================
-    private JPanel createActions() {
-        JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 0));
-        actions.setOpaque(false);
+   private JPanel createActions() {
+    JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 0));
+    actions.setOpaque(false);
 
-        RoundedButton nouvelle = new RoundedButton("Nouvelle Inspection");
-        nouvelle.setBackground(new Color(20, 20, 20));
+    RoundedButton nouvelle = new RoundedButton("Nouvelle Inspection");
+    nouvelle.setBackground(new Color(20, 20, 20));
+    nouvelle.setForeground(Color.WHITE);
+    nouvelle.setPreferredSize(new Dimension(220, 45));
 
-        RoundedButton quitter = new RoundedButton("Quitter");
-        quitter.setBackground(new Color(180, 180, 180));
-        quitter.setForeground(Color.BLACK);
-        quitter.addActionListener(e -> System.exit(0));
+    // ✅ ACTION LISTENER (ÉTAPE 7)
+    nouvelle.addActionListener(e -> {
+        try {
+            // 1️⃣ Lire les champs
+            String plaque = plaqueField.getText();
+            String type = (String) typeBox.getSelectedItem();
+            String modele = modeleField.getText();
+            int annee = Integer.parseInt(anneeField.getText());
 
-        actions.add(nouvelle);
-        actions.add(quitter);
+            // 2️⃣ Créer le véhicule
+            Vehicule vehicule = new Vehicule();
+            vehicule.setPlaque(plaque);
+            vehicule.setType(type);
+            vehicule.setModele(modele);
+            vehicule.setAnnee(annee);
 
-        return actions;
-    }
+            // 3️⃣ Créer le contrôle technique
+            ControleTechnique controle = new ControleTechnique();
+            controle.setVehicule(vehicule);
+
+            // 4️⃣ Test visuel
+            JOptionPane.showMessageDialog(
+                this,
+                "Inspection créée pour : " + plaque,
+                "Succès",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Année invalide",
+                "Erreur",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    });
+
+    RoundedButton quitter = new RoundedButton("Quitter");
+    quitter.setBackground(new Color(180, 180, 180));
+    quitter.setForeground(Color.BLACK);
+    quitter.setPreferredSize(new Dimension(120, 45));
+    quitter.addActionListener(e -> System.exit(0));
+
+    actions.add(nouvelle);
+    actions.add(quitter);
+
+    return actions;
+}
+
 
     // ================= FOOTER =================
     private JPanel createFooter() {
@@ -255,5 +301,7 @@ public class AccueilFrame extends JFrame {
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
             super.paintComponent(g);
         }
-    }
+    };
+
+
 }

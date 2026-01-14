@@ -20,4 +20,15 @@ public class ControleTechnique {
     public List<ElementControle> getElements() {
         return elements;
     }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+    
+    
 }
+
