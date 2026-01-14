@@ -6,19 +6,12 @@ package service;
 import java.util.*;
 import model.*;
 import util.*;
-
 /**
  *
  * @author Admin
  */
 public class CatalogueParametres {
     
-    public enum CategorieControle {
-    DOCUMENTS_ADMINISTRATIFS,
-    MOTEUR,
-    ECLAIRAGE,
-    FREINAGE
-}
 
     public static List<ParametreControle> creerParametres() {
 
@@ -267,4 +260,3 @@ public class CatalogueParametres {
         
     }
 }
-
