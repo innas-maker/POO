@@ -4,6 +4,7 @@
  */
 package model;
 import java.util.*;
+import service.CatalogueParametres;
 import util.*;
 /**
  *
@@ -11,14 +12,18 @@ import util.*;
  */
 public class ParametreControle {
 
-    private String nom;                  
-    private CategorieControle categorie; 
-    private List<ElementControle> defauts;
+    public String nom;                  
+    public CategorieControle categorie; 
+    public List<ElementControle> defauts;
 
     public ParametreControle(String nom, CategorieControle categorie) {
         this.nom = nom;
         this.categorie = categorie;
         this.defauts = new ArrayList<>();
+    }
+
+    public ParametreControle(String plaque_dimmatriculation, CatalogueParametres.CategorieControle categorieControle) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void ajouterDefaut(ElementControle defaut) {
@@ -28,6 +33,7 @@ public class ParametreControle {
     public List<ElementControle> getDefauts() {
         return defauts;
     }
+}
 
     public String getNom() {
         return nom;

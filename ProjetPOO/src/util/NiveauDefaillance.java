@@ -9,7 +9,6 @@ package util;
  * @author Admin
  */
 public enum NiveauDefaillance {
-    AUCUNE,
     MINEUR,
     MAJEUR,
     CRITIQUE

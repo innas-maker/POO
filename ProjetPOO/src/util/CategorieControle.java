@@ -6,9 +6,10 @@ package util;
 
 /**
  *
- * @author Admin
+ * @author sandranyetam
  */
-public enum CategorieControle {
+ 
+    public enum CategorieControle {
     DOCUMENTS_ADMINISTRATIFS,
     MOTEUR,
     ECLAIRAGE,
