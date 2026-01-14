@@ -10,10 +10,5 @@ import util.CategorieControle;
  *
  * @author Admin
  */
-public class EclairageControle extends ElementControle {
-
-    @Override
-    public CategorieControle getCategorie() {
-        return CategorieControle.ECLAIRAGE;
-    }
+public class EclairageControle {
   }

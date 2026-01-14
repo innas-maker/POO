@@ -6,10 +6,5 @@ package model;
 
 import util.CategorieControle;
 
-public class MoteurControle extends ElementControle {
-
-    @Override
-    public CategorieControle getCategorie() {
-        return CategorieControle.MOTEUR;
-    }
+public class MoteurControle {
   }

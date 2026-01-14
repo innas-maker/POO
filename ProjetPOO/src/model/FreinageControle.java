@@ -10,10 +10,5 @@ import util.CategorieControle;
  *
  * @author Admin
  */
-public class FreinageControle extends ElementControle {
-
-    @Override
-    public CategorieControle getCategorie() {
-        return CategorieControle.FREINAGE;
-    }
+public class FreinageControle {
   }
