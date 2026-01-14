@@ -5,20 +5,21 @@
 package model;
 
 import java.util.*;
+import service.*;
 /**
  *
  * @author Admin
  */
 public class ControleTechnique {
-     private Vehicule vehicule;
-    private List<ElementControle> elements = new ArrayList<>();
+     public Vehicule vehicule;
+     public List<ParametreControle> parametres;
 
-    public void ajouterElement(ElementControle e) {
-        elements.add(e);
+    public ControleTechnique() {
+        this.parametres = CatalogueParametres.creerParametres();
     }
 
-    public List<ElementControle> getElements() {
-        return elements;
+    public List<ParametreControle> getParametres() {
+        return parametres;
     }
 
     public Vehicule getVehicule() {

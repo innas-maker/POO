@@ -10,10 +10,7 @@ import util.CategorieControle;
  *
  * @author Admin
  */
-public class DocumentAdministratif extends ElementControle {
+public class DocumentAdministratif {
 
-    @Override
-    public CategorieControle getCategorie() {
-        return CategorieControle.DOCUMENTS_ADMINISTRATIFS;
+ 
     }
-  }

@@ -13,9 +13,18 @@ import util.NiveauDefaillance;
  */
 
 
-public abstract class ElementControle {
-    protected String nom;
+public class ElementControle {
+
+    private String description;          
     public NiveauDefaillance niveau;
 
-    public abstract CategorieControle getCategorie();
+    public ElementControle(String description, NiveauDefaillance niveau) {
+        this.description = description;
+        this.niveau = niveau;
+    }
+
+    public NiveauDefaillance getNiveau() {
+        return niveau;
+    }
 }
+
