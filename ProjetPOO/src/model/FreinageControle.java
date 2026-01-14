@@ -4,11 +4,19 @@
  */
 package model;
 
+import java.util.List;
+import service.CatalogueParametres;
+import service.IAnalyseControle;
 import util.CategorieControle;
+import static util.NiveauDefaillance.CRITIQUE;
+import static util.NiveauDefaillance.MAJEUR;
+import static util.NiveauDefaillance.MINEUR;
 
 /**
  *
  * @author Admin
  */
-public class FreinageControle {
+public abstract class FreinageControle implements IAnalyseControle{
+    
+   
   }

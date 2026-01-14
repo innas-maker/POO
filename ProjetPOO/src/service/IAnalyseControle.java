@@ -14,5 +14,8 @@ import util.NiveauDefaillance;
 import java.util.List;
 
 public interface IAnalyseControle {
-    NiveauDefaillance genererVerdict(List<ElementControle> elements);
+   boolean genererVerdict();
+   float genererPourcentage(List<ElementControle> elements, NiveauDefaillance niveau);
+   int CompterElements(List<ElementControle> elements);
+    
 }
