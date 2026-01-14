@@ -4,6 +4,7 @@
  */
 package model;
 import java.util.*;
+import service.CatalogueParametres;
 import util.*;
 /**
  *

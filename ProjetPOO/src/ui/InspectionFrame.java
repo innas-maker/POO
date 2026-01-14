@@ -1,20 +1,31 @@
 package ui;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.*;
-import java.awt.*;
+import java.util.*;
+import model.ElementControle;
 
 public class InspectionFrame extends JFrame {
 
     public CardLayout cardLayout;
     public JPanel container;
+    /**
+     *
+     */
+    public List<ElementControle> defautsSelectionnes;
 
     public InspectionFrame() {
+        this.defautsSelectionnes = new ArrayList<>();
         setTitle("AutoCheck – Inspection en cours");
         setSize(1200, 750);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-         cardLayout = new CardLayout();
-       container = new JPanel(cardLayout);
+        cardLayout = new CardLayout();
+        container = new JPanel(cardLayout);
 
         JPanel accueil = new JPanel(new BorderLayout());
 
@@ -27,8 +38,8 @@ public class InspectionFrame extends JFrame {
         container.add(new MoteurPage(this), "Moteur");
         container.add(new EclairagePage(this), "Eclairage");
         container.add(new FreinagePage(this), "Freinage");
-setContentPane(container);
-cardLayout.show(container, "Accueil");
+        setContentPane(container);
+        cardLayout.show(container, "Accueil");
 
     }
 
@@ -91,20 +102,37 @@ cardLayout.show(container, "Accueil");
         card.add(d, BorderLayout.CENTER);
 
         card.addActionListener(e -> {
-    switch (title) {
-        case "Documents Administratifs" -> afficherPage("Documents");
-        case "Moteur" -> afficherPage("Moteur");
-        case "Éclairage" -> afficherPage("Eclairage");
-        case "Freinage" -> afficherPage("Freinage");
-    }
-});
-
+            switch (title) {
+                case "Documents Administratifs" ->
+                    afficherPage("Documents");
+                case "Moteur" ->
+                    afficherPage("Moteur");
+                case "Éclairage" ->
+                    afficherPage("Eclairage");
+                case "Freinage" ->
+                    afficherPage("Freinage");
+            }
+        });
 
         return card;
     }
 
     public void afficherPage(String page) {
         cardLayout.show(container, page);
+    }
+
+    public void ajouterDefaut(ElementControle defaut) {
+        if (!defautsSelectionnes.contains(defaut)) {
+            defautsSelectionnes.add(defaut);
+        }
+    }
+
+    public void retirerDefaut(ElementControle defaut) {
+        defautsSelectionnes.remove(defaut);
+    }
+
+    public List<ElementControle> getDefautsSelectionnes() {
+        return defautsSelectionnes;
     }
 
 }

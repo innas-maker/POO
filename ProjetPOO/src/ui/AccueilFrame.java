@@ -71,7 +71,7 @@ public class AccueilFrame extends JFrame {
         GlassPanel card = new GlassPanel(35);
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
 
-        JLabel step = new JLabel("01");
+        JLabel step = new JLabel("00");
         step.setFont(new Font("Oswald", Font.PLAIN, 50));
 
         JLabel title = new JLabel("<html>VISITE TECHNIQUE<br>AUTOMOBILE</html>");
