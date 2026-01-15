@@ -94,6 +94,18 @@ public float genererPourcentage(List<ElementControle> elements){
     return pourcentage;
 }
 
+
+@Override
+public int genererVerdict(float pourcentage) {
+    if (pourcentage == 100) {
+        return 3;
+    } else if (pourcentage >= 80 && pourcentage < 100) {
+        return 2;
+    } else {
+        return 3;
+    }
+}
+
 // Méthodes getter pour accéder aux compteurs
 public int getCompteurCritique() {
     return compteurCritique;
