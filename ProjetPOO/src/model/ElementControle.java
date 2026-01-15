@@ -17,6 +17,7 @@ public class ElementControle {
 
     private String description;          
     public NiveauDefaillance niveau;
+    private ParametreControle parametre;
 
     public ElementControle(String description, NiveauDefaillance niveau) {
         this.description = description;
@@ -33,6 +34,14 @@ public class ElementControle {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ParametreControle getParametre() {
+        return parametre;
+    }
+
+    public void setParametre(ParametreControle parametre) {
+        this.parametre = parametre;
     }
     
     

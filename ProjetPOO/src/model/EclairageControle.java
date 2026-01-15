@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import util.CategorieControle;
+import static util.CategorieControle.ECLAIRAGE;
 import util.NiveauDefaillance;
 
 /**
@@ -23,7 +24,6 @@ private int compteurCritique = 0;
 private int compteurMajeur = 0;
 private int compteurMineur = 0;
 
-@Override
 public int CompterElements(List<ElementControle> elements){
     // Réinitialiser les compteurs
     compteurCritique = 0;
@@ -43,7 +43,7 @@ public int CompterElements(List<ElementControle> elements){
             // Vérifier si cet élément appartient à la catégorie MOTEUR
             boolean estMoteur = false;
             for (ParametreControle param : tousParametres) {
-                if (param.getCategorie() == CatalogueParametres.CategorieControle.ECLAIRAGE) {
+                if (param.getCategorie() == ECLAIRAGE) {
                     for (ElementControle defaut : param.getDefauts()) {
                         if (defaut.getDescription().equals(element.getDescription())) {
                             estMoteur = true;

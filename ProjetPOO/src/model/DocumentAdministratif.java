@@ -8,6 +8,7 @@ import java.util.List;
 import service.CatalogueParametres;
 import service.IAnalyseControle;
 import util.CategorieControle;
+import static util.CategorieControle.DOCUMENTS_ADMINISTRATIFS;
 import static util.NiveauDefaillance.CRITIQUE;
 import static util.NiveauDefaillance.MAJEUR;
 import static util.NiveauDefaillance.MINEUR;
@@ -45,7 +46,7 @@ public int CompterElements(List<ElementControle> elements){
             // Vérifier si cet élément appartient à la catégorie MOTEUR
             boolean estMoteur = false;
             for (ParametreControle param : tousParametres) {
-                if (param.getCategorie() == CatalogueParametres.CategorieControle.DOCUMENTS_ADMINISTRATIFS) {
+                if (param.getCategorie() == DOCUMENTS_ADMINISTRATIFS) {
                     for (ElementControle defaut : param.getDefauts()) {
                         if (defaut.getDescription().equals(element.getDescription())) {
                             estMoteur = true;
@@ -99,14 +100,13 @@ public float genererPourcentage(List<ElementControle> elements){
     return pourcentage;
 }
 
-@Override
-public String genererVerdict(float pourcentage) {
+public int genererVerdict(float pourcentage) {
     if (pourcentage == 100) {
-        return "Contrôle validé";
+        return 1;
     } else if (pourcentage >= 80 && pourcentage < 100) {
-        return "En attente de plus d'info pour une validation";
+        return 2;
     } else {
-        return "Contrôle refusé";
+        return 3;
     }
 }
 

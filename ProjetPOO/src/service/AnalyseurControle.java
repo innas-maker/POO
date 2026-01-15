@@ -13,8 +13,7 @@ import model.*;
 import util.NiveauDefaillance;
 import java.util.List;
 
-public class AnalyseurControle implements IAnalyseControle {
-     @Override
+public abstract class AnalyseurControle implements IAnalyseControle {
     public NiveauDefaillance genererVerdict(List<ElementControle> elements) {
         if (elements.stream().anyMatch(e -> e.niveau == NiveauDefaillance.CRITIQUE))
             return NiveauDefaillance.CRITIQUE;

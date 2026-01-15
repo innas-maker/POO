@@ -9,6 +9,7 @@ import java.util.List;
 
 
 import util.CategorieControle;
+import static util.CategorieControle.MOTEUR;
 import util.NiveauDefaillance;
 
 public abstract class MoteurControle  implements IAnalyseControle{
@@ -40,7 +41,7 @@ public int CompterElements(List<ElementControle> elements){
             // Vérifier si cet élément appartient à la catégorie MOTEUR
             boolean estMoteur = false;
             for (ParametreControle param : tousParametres) {
-                if (param.getCategorie() == CatalogueParametres.CategorieControle.MOTEUR) {
+                if (param.getCategorie() == MOTEUR) {
                     for (ElementControle defaut : param.getDefauts()) {
                         if (defaut.getDescription().equals(element.getDescription())) {
                             estMoteur = true;

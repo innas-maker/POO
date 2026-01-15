@@ -22,18 +22,17 @@ public class ParametreControle {
         this.defauts = new ArrayList<>();
     }
 
-    public ParametreControle(String plaque_dimmatriculation, CatalogueParametres.CategorieControle categorieControle) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  
 
     public void ajouterDefaut(ElementControle defaut) {
+        defaut.setParametre(this);
         defauts.add(defaut);
     }
 
     public List<ElementControle> getDefauts() {
         return defauts;
     }
-}
+
 
     public String getNom() {
         return nom;
