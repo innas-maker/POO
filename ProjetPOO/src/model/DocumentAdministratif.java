@@ -7,7 +7,6 @@ package model;
 import java.util.List;
 import service.CatalogueParametres;
 import service.IAnalyseControle;
-import util.CategorieControle;
 import static util.NiveauDefaillance.CRITIQUE;
 import static util.NiveauDefaillance.MAJEUR;
 import static util.NiveauDefaillance.MINEUR;
@@ -100,13 +99,13 @@ public float genererPourcentage(List<ElementControle> elements){
 }
 
 @Override
-public String genererVerdict(float pourcentage) {
+public int genererVerdict(float pourcentage) {
     if (pourcentage == 100) {
-        return "Contrôle validé";
+        return 1;
     } else if (pourcentage >= 80 && pourcentage < 100) {
-        return "En attente de plus d'info pour une validation";
+        return 2;
     } else {
-        return "Contrôle refusé";
+        return 3;
     }
 }
 

@@ -14,7 +14,7 @@ import util.NiveauDefaillance;
  *
  * @author Admin
  */
-public class EclairageControle {
+public abstract class EclairageControle implements IAnalyseControle {
     
       
     // Attributs de classe pour stocker les compteurs
@@ -95,6 +95,17 @@ public float genererPourcentage(List<ElementControle> elements){
     }
     
     return pourcentage;
+}
+
+@Override
+public int genererVerdict(float pourcentage) {
+    if (pourcentage >= 50) {
+        return 1;
+    } else if (pourcentage >= 30 && pourcentage < 50) {
+        return 2;
+    } else {
+        return 3;
+    }
 }
 
 // Méthodes getter pour accéder aux compteurs
