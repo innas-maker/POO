@@ -153,37 +153,35 @@ public class AccueilFrame extends JFrame {
     nouvelle.setPreferredSize(new Dimension(220, 45));
 
    
-    nouvelle.addActionListener(e -> {
-        try {
-            String plaque = plaqueField.getText();
-            String type = (String) typeBox.getSelectedItem();
-            String modele = modeleField.getText();
-            int annee = Integer.parseInt(anneeField.getText());
+    // Dans AccueilFrame.java, modifiez le bouton "Nouvelle Inspection"
+nouvelle.addActionListener(e -> {
+    try {
+        // Lire les champs
+        String plaque = plaqueField.getText();
+        String type = (String) typeBox.getSelectedItem();
+        String modele = modeleField.getText();
+        int annee = Integer.parseInt(anneeField.getText());
 
-            Vehicule vehicule = new Vehicule();
-            vehicule.setPlaque(plaque);
-            vehicule.setType(type);
-            vehicule.setModele(modele);
-            vehicule.setAnnee(annee);
+        // Créer le véhicule
+        Vehicule vehicule = new Vehicule();
+        vehicule.setPlaque(plaque);
+        vehicule.setType(type);
+        vehicule.setModele(modele);
+        vehicule.setAnnee(annee);
 
-            ControleTechnique controle = new ControleTechnique();
-            controle.setVehicule(vehicule);
+        // ✅ Passer le véhicule à InspectionFrame
+        new InspectionFrame(vehicule).setVisible(true);
+        dispose();
 
-            
-            new InspectionFrame().setVisible(true);
-
-           
-            this.dispose();
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(
-                this,
-                "Année invalide",
-                "Erreur",
-                JOptionPane.ERROR_MESSAGE
-            );
-        }
-    });
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Année invalide",
+            "Erreur",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
+});
 
     RoundedButton quitter = new RoundedButton("Quitter");
     quitter.setBackground(new Color(180, 180, 180));

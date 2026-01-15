@@ -173,7 +173,7 @@ public class FreinagePage extends JPanel {
         suivant.setForeground(Color.BLACK);
         suivant.setFocusPainted(false);
 
-        suivant.addActionListener(e -> frame.afficherPage("Eclairage"));
+        suivant.addActionListener(e -> frame.afficherPage("Verdict"));
 
         bottom.add(accueil);
         bottom.add(suivant);
